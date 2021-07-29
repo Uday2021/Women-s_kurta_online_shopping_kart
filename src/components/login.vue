@@ -22,6 +22,12 @@
             placeholder="Enter Password..."
             required
           />
+          <input
+            type="text"
+            v-model="role"
+            placeholder="Your Role... user/merchant"
+            required
+          />
           <a
             href="#"
             class="btn btn-full"
@@ -69,6 +75,7 @@ export default {
       name: "",
       email: "",
       password: "",
+      role: "",
       userEmail: "",
       userName: ""
     };
@@ -114,10 +121,11 @@ export default {
       var result = await axios.post('http://localhost:4000/register',{
          name: this.name,
          email: this.email,
-         password: this.password
+         password: this.password,
+         role: this.role,
       })
       console.warn(result.data);
-      localStorage.setItem("user-info",JSON.stringify(result.data));
+      localStorage.setItem("userinfo",JSON.stringify(result.data));
     },
   },
 };
@@ -163,7 +171,7 @@ export default {
   text-align: center;
 }
 .popup-content {
-  height: 280px;
+  height: 400px;
   width: 500px;
   background: rgb(235,240,241);
 background: linear-gradient(90deg, rgba(235,240,241,1) 5%, rgba(132,133,117,0.87718837535014) 98%);
@@ -181,7 +189,7 @@ input {
   border-radius: 5px;
 }
 
-.close {
+/* .close {
   height: 30px;
   width: 30px;
   position: absolute;
@@ -190,7 +198,7 @@ input {
   border-radius: 50%;
   box-shadow: 6px 6px 29px -4px rgba(0, 0, 0, 0.75);
   cursor: pointer;
-}
+} */
 
 .user {
   height: 50px;

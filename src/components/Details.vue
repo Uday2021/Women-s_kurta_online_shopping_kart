@@ -101,7 +101,7 @@ import Headers from "./Header.vue"
 .main{
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
+    justify-content: center;
     /* align-items: center; */
 }
 

@@ -84,7 +84,7 @@ import Headers from "./Header.vue"
 }
 
 .image{
-    width: 30%;
+    /* width: 30%; */
     height: auto;
 
 }
@@ -99,7 +99,7 @@ import Headers from "./Header.vue"
 .main{
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
+    justify-content: space-around;
     /* align-items: center; */
 }
 
@@ -125,6 +125,8 @@ footer{
     margin-top: 20px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    cursor: pointer;
+    /* z-index: -1; */
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,108,1) 0%, rgba(4,189,178,1) 60%, rgba(0,212,255,1) 100%);
 }

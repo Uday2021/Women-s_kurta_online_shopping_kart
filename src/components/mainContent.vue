@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div class="topbar">
+    <!-- <div class="topbar">
       <select name="fashion" id="fashion">
         <option value="fashion">Newest</option>
         <option value="byPrice">Price(low to high)</option>
         <option value="byPrice">Price(high to low)</option>
       </select>
-    </div>
+    </div> -->
     <div class="main">
       <div v-for="(product,index) in products" :key="index">
         <div class=mainData @mouseover="detail(index)" @mouseout="hide(index)">
@@ -19,7 +18,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -79,18 +77,24 @@ export default {
 
 <style scoped>
 
-.topbar {
-  width: 70%;
+/* .test{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-around; */
+
+/* .topbar {
+  width: 68%;
   height: 40px;
-  border: 1px solid lightgray;
-  margin-left: 25%;
-  margin-top: -47%;
+  border: 1px solid #6543FFFF;
+  border-radius: 4px;
+  margin-bottom: 1%;
+  margin-top: 2%;
   text-align: right;
-}
+} */
 select {
   height: 35px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
+  border: none;
 }
 
 .mainData {
@@ -106,10 +110,13 @@ select {
 }
 
 .main {
+  width: 100%;
   display: flex;
+  /* flex-direction: column; */
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: 20%;
+  align-items: center;
+  /* margin-left: 20%; */
   margin-top: 2%;
 }
 </style>

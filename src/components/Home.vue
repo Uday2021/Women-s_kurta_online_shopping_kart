@@ -2,7 +2,7 @@
   <div>
     <Headers />
 
-    <Filteration />
+    <!-- <Filteration /> -->
 
     <main-content
       />
@@ -11,13 +11,13 @@
 
 <script>
 import Headers from "./Header.vue";
-import Filteration from "./filter.vue";
+// import Filteration from "./filter.vue";
 import mainContent from "./mainContent.vue";
 export default {
   name: "Home",
   components: {
     Headers,
-    Filteration,
+    // Filteration,
     mainContent,
   },
 };
