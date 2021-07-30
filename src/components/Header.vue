@@ -8,7 +8,7 @@
           <a href="" > <i class="fa fa-linux"></i> Welcome {{loginUser.replace(/[\"\"]+/g,'')}}</a>
           <a href=""> <i class="fa fa-snapchat-square"></i> Subscription</a> 
           <a href="" @click="myOrder"> <i class="fa fa-arrow-right"></i> My Order </a> 
-          <a v-if="merchant" href=""> <i class="fa fa-arrow-right"></i> Add Product </a> 
+          <a v-if="merchant" href="" @click="addProduct"> <i class="fa fa-arrow-right"></i> Add Product </a> 
           <a v-if="userLog" href="" @click="logout"> <i class="fa fa-arrow-right"></i> Logout</a> 
           
         </li>
@@ -21,7 +21,7 @@
           <!-- Logo Placeholder for Inlustration -->
           <!-- <img width="80" src="https://wforwomanonline.com/images/logo.png" alt="image"
           /> -->
-          <img src="../assets/login.png" alt="user" class="user" @click="userProfile" style="margin-left: 20px; margin-top: 10px;" />
+          <img src="../assets/login.png" alt="user" class="user" @click="userProfile" style="margin-left: 20px; margin-top: 10px;cursor: pointer;" />
 
           <span v-if="!user" style="font-weight: bold;position:absolute;top:5%; left:7%; color: #fff; font-size: 18px" >{{loginUser.replace(/[\"\"]+/g,'')}}</span>
 
@@ -152,6 +152,9 @@ if (localStorage.loginUser) {
       },
       myOrder(){
         this.$router.push({path: '/order'});
+      },
+      addProduct(){
+        this.$router.push({path: '/addProduct'});
       }
   }
 };

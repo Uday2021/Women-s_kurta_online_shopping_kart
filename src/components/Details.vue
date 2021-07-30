@@ -30,7 +30,7 @@
     </div>
     <footer>
         <p> @Copyright </p>
-        <p> {{product.for_complaints}} </p>
+        <p> Customer Care No 8800698168, customercare@clothing.com </p>
     </footer>
 </div>
 </template>
