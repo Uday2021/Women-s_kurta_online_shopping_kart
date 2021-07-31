@@ -10,11 +10,11 @@
       <div v-for="(product,index) in products" :key="index">
         <div class=mainData @mouseover="detail(index)" @mouseout="hide(index)">
           <div class="img">
-            <img :src="product.image" alt="image" />
+            <img :src="product.Image" alt="image" />
             <span :id="index" style="position: absolute; width:300px;background-color:#666;display:none;text-decoration:none;color:#000" @click="showDetails(product)">Details</span>
           </div>
-          <p class="kurtaName">{{ product.name }} {{index}}</p>
-          <p class="kurtaPrice">{{ product.price }}</p>
+          <p class="kurtaName">{{ product.Name }} {{index}}</p>
+          <p class="kurtaPrice">{{ product.Price }}</p>
         </div>
       </div>
     </div>
@@ -58,17 +58,18 @@ export default {
     showDetails(product){
       console.log(product);
       window.currentProduct = product;
-      this.$router.push({path: 'details', query: {product:`${product.id_product}`}});
+      this.$router.push({path: 'details', query: {product:`${product._id}`}});
     }
   },
 
   mounted(){
       axios
       .get(
-        "https://pim.wforwoman.com/pim/pimresponse.php/?service=category&store=1&url_key=top-wear-kurtas&page=1&count=20&sort_by=&sort_dir=desc&filter="
+        "http://localhost:4000/product"
       )
       .then((res) => {
-        this.products = res.data.result.products;
+        this.products = res.data;
+        console.log(res.data);
       });
   }
 

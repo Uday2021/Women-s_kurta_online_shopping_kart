@@ -4,14 +4,14 @@
 
     <div class="main">
       <div class="image">
-        <img :src="product.image" alt="image" />
+        <img :src="product.Image" alt="image" />
       </div>
       <div class="content">
-        <h4>{{ product.name }}</h4>
+        <h4>{{ product.Name }}</h4>
         <span> special price: </span>
-        <span>{{ product.selling_price }}</span>
-        <span style="text-decoration:line-through">{{ product.price }}</span>
-        <h4>{{ product.discount }}% off</h4>
+        <span>{{ product.Selling_price }}</span>
+        <span style="text-decoration:line-through">{{ product.Price }}</span>
+        <h4>{{ product.Discount }}% off</h4>
         <h5>Payment Status: <span id="success">Successfull</span></h5>
         <br />
         <!-- <option value="">{{product.size[5]}}</option> -->
@@ -32,7 +32,7 @@
            <h5>User Id: {{detail[0].userId}}</h5>
            <h5>Order Id: {{detail[0].orderId}}</h5>
            <h5>Order Status: {{detail[0].orderDetail.orderStatus}}</h5>
-           <h5>Product Name: {{product.name}}</h5>
+           <h5>Product Name: {{product.Name}}</h5>
            <h5>Product Size: {{detail[0].orderDetail.productSize}}</h5>
            <h5>Payment Status: {{detail[0].paytmentDetail.paymentStatus}}</h5>
            <h5>TransactionId: {{detail[0].paytmentDetail.transactionId}}</h5>

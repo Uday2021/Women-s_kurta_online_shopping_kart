@@ -4,17 +4,17 @@
     :product = "product"/>
     <div class="main">
         <div class="image">
-         <img :src="product.image" alt="image" />
+         <img :src="product.Image" alt="image" />
          </div>
          <div class="content">
-         <h4>{{product.name}}</h4>
+         <h4>{{product.Name}}</h4>
          <span> special price: </span>
-         <span>{{product.selling_price}}</span>
-         <span style= "text-decoration:line-through">{{product.price}}</span>
+         <span>{{product.Selling_price}}</span>
+         <span style= "text-decoration:line-through">{{product.Price}}</span>
          <h4>{{product.discount}}% off</h4><br>
-          <h6>Description: <span>{{product.description}}</span></h6>
+          <h6>Description: <span>{{product.Description}}</span></h6>
         Available size:<select name="size" id="size">
-            <option value="" v-for="size in product.size.split(',')" :key="size">{{size.replace(/[\[\]']+/g,'')}}</option>
+            <option value="" v-for="size in product.Size.split(',')" :key="size">{{size.replace(/[\[\]']+/g,'')}}</option>
             <!-- <option value="">{{product.size[5]}}</option> -->
             
 

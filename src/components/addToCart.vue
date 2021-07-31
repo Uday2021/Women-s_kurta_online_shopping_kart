@@ -3,14 +3,14 @@
     <Headers />
     <div class="main">
         <div class="image">
-         <img :src="product.image" alt="image" />
+         <img :src="product.Image" alt="image" />
          </div>
          <div class="content" >
-         <h4 >{{product.name}}</h4>
-         <span> special price: </span>
-         <span>{{product.selling_price}}</span>
-         <span style= "text-decoration:line-through">{{product.price}}</span>
-         <h4>{{product.discount}}% off</h4><br>
+         <h4 >{{product.Name}}</h4>
+         <span> special Price: </span>
+         <span>{{product.Selling_price}}</span>
+         <span style= "text-decoration:line-through">{{product.Price}}</span>
+         <h4>{{product.Discount}}% off</h4><br>
             <!-- <option value="">{{product.size[5]}}</option> -->
             
           

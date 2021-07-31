@@ -145,6 +145,7 @@ if (localStorage.loginUser) {
       },
       logout(){
         localStorage.loginUser = "";
+        localStorage.userinfo = "";
         window.location.reload();
       },
       addCart(){
