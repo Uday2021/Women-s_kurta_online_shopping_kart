@@ -3,27 +3,27 @@
     <Headers />
     <div class="main">
         <div class="image">
-         <img :src="product.Image" alt="image" />
+         <img :src="product.Image" />
          </div>
          <div class="content" >
          <h4 >{{product.Name}}</h4>
-         <span> special Price: </span>
+         <span v-if="item"> special Price: </span>
          <span>{{product.Selling_price}}</span>
          <span style= "text-decoration:line-through">{{product.Price}}</span>
-         <h4>{{product.Discount}}% off</h4><br>
+         <h4 v-if="item">{{product.Discount}}% off</h4><br>
             <!-- <option value="">{{product.size[5]}}</option> -->
             
           
-             <button id="btn"  @click="redirect">Buy Now</button>
-             <button id="btn" @click="removeItem">Remove From Cart</button>
+             <button v-if="item" id="btn"  @click="redirect">Buy Now</button>
+             <button v-if="item" id="btn" @click="removeItem">Remove From Cart</button>
 
-             <h5>Count: {{count}}</h5>
+             <h5 v-if="item">Count: {{count}}</h5>
             
          </div>
     </div>
     <footer>
         <p> @Copyright </p>
-        <p> {{product.for_complaints}} </p>
+        <p> Customer Care No 8800698168, customercare@clothing.com </p>
     </footer>
 </div>
 </template>
@@ -40,14 +40,20 @@ import Headers from "./Header.vue"
             return {
                 product:{},
                 count: "",
-                stripe: null
+                stripe: null,
+                item: true,
             }
         },
 
         methods:{
             removeItem(){
                 localStorage.product = "";
-                window.location.reload();
+                // this.item = false;
+                localStorage.item = false;
+                this.item = JSON.parse(localStorage.item);
+
+                console.log(this.item);
+                // window.location.reload();
             },
             redirect(){
                 this.stripe.redirectToCheckout({
@@ -70,6 +76,8 @@ import Headers from "./Header.vue"
         },
         async mounted(){
            this.stripe = await loadStripe("pk_test_51JHO6cSEbQRDxWer6f3476gB44eczFw1AkOefeSXHQdisyARKGBAI7geCeFHoBV8GZ3DpQzbKj9nqiUPdQDl5xCg00YXNMW8Si");
+        
+           
         }
 
     }

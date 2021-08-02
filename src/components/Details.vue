@@ -47,6 +47,7 @@ import Headers from "./Header.vue"
                 product:{},
                 added: false,
                 count: 0,
+                item: true
             }
         },
 
@@ -58,6 +59,7 @@ import Headers from "./Header.vue"
                 this.added = true;
                 this.count++;
                 localStorage.setItem('count', this.count);
+                localStorage.setItem('item', this.item);
 
                 }
                 else{
@@ -70,7 +72,7 @@ import Headers from "./Header.vue"
             console.log("created", this.$route)
         },
         mounted(){
-            this.product = window.currentProduct
+            this.product = window.currentProduct;
             console.log("mounted", this.$route)
         }
         

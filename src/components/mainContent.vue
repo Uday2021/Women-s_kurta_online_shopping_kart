@@ -69,7 +69,8 @@ export default {
       )
       .then((res) => {
         this.products = res.data;
-        console.log(res.data);
+        console.log(JSON.stringify(res.data));
+        localStorage.setItem('productInfo', JSON.stringify(res.data));
       });
   }
 
