@@ -46,6 +46,10 @@
         <input type="text" placeholder="product size" v-model="size" />
       </div>
       <div class="inputContainer">
+        <label for="description">CATEGORY: </label>
+        <input type="text" placeholder="product category" v-model="category" />
+      </div>
+      <div class="inputContainer">
         <label for="image">IMAGE: </label>
         <input
           type="file"
@@ -73,6 +77,7 @@ export default {
       description: "",
       image: "",
       size: "",
+      category: "",
 
     };
   },
@@ -88,6 +93,7 @@ export default {
       fd.set("Discount", this.discount);
       fd.set("Description", this.description);
       fd.set("Size", this.size);
+      fd.set("Category", this.category);
 
       console.log(fd);
       var result = await axios.post("http://localhost:4000/product", fd);

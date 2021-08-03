@@ -30,6 +30,7 @@ export default {
       products: [],
       show: false,
       updatedData: {},
+      // updateCategory: "",
       roles: "",
       merchant: true,
     };
@@ -37,6 +38,12 @@ export default {
 
   created() {
     window.addEventListener("scroll", this.handleScroll);
+
+    this.roles = JSON.parse(localStorage.userinfo);
+      console.log("hello",this.roles.role);
+     if (this.roles.role === "merchant") {
+      this.merchant = false;
+    }
 
     
   },
@@ -52,10 +59,13 @@ export default {
     },
 
     detail(index){
+      console.log(index)
       // console.log(index)
       document.getElementById(index).style.display = 'block'
     },
     hide(index){
+      console.log(index)
+
       // console.log(index)
       document.getElementById(index).style.display = 'none'
     },
@@ -67,13 +77,25 @@ export default {
     updateData(result){
        this.updatedData = result;
        console.log(this.updatedData);
+    },
+    updateCategory(category_result){
+      // alert(category_result);
+
+       axios
+      .get(
+        `http://localhost:4000/product?Category=${category_result}`
+      )
+      .then((res) => {
+        this.products = res.data;
+        console.log(JSON.stringify(res.data));
     }
+      )}
   },
 
   mounted(){
       axios
       .get(
-        "http://localhost:4000/product"
+        `http://localhost:4000/product`
       )
       .then((res) => {
         this.products = res.data;
@@ -81,19 +103,19 @@ export default {
         localStorage.setItem('productInfo', JSON.stringify(res.data));
       });
 
-       this.roles = JSON.parse(localStorage.userinfo);
-      console.log("hello",this.roles.role);
-     if (this.roles.role === "merchant") {
-      this.merchant = false;
-    }
-
+       
       EventBus.$on('DATA_CHANGE', (result) => {
       this.updateData(result)
       this.products = result;
 
-     
 
     })
+
+      EventBus.$on("CATEGORY_CHANGE", (category_result) =>{
+       this.updateCategory(category_result);
+
+      })
+
   }
 
 };

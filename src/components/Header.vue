@@ -58,8 +58,8 @@
       <div class="navbar">
         <button id="btn" @click="popUp">Login</button>
         <router-link to="/">Home</router-link>
-        <i class="fa fa-shopping-cart" @click="addCart"></i>
-        <p style="position: absolute;left:94%; color: #fff;">{{ count }}</p>
+        <i v-if="userLog" class="fa fa-shopping-cart" @click="addCart"></i>
+        <p v-if="userLog" style="position: absolute;left:94%; color: #fff;">{{ count }}</p>
       </div>
       <div
         v-if="login"
@@ -78,11 +78,12 @@
     <section class="filter">
       <ul>
         <li>
-          <select class="grid-item">
-            <option value="category">Category</option>
-            <option value="category">Kurtas</option>
-            <option value="category">Sets & Dresses</option>
+          <select v-model="selected" @change="doSomething()" class="grid-item">
+            <option value="">Category</option>
+            <option value="old">old</option>
+            <option value="new">new</option>
           </select>
+          <span>Selected: {{ selected }}</span>
           <select class="grid-item">
             <option value="category">Price</option>
             <option value="category">Rs.0 to Rs.2000</option>
@@ -121,7 +122,7 @@
   </div>
 </template>
 <script>
-import EventBus from '../eventBus'
+import EventBus from "../eventBus";
 import login from "./login.vue";
 export default {
   name: "Headers",
@@ -140,6 +141,7 @@ export default {
       merchant: false,
       product: {},
       products: [],
+      selected: "",
     };
   },
   created() {
@@ -191,11 +193,18 @@ export default {
       this.products = localStorage.productInfo;
       console.log(this.products);
       let pro = JSON.parse(this.products);
-      const result = pro.filter((prod) => 
-      prod.Name.startsWith(this.searchValue));
+      const result = pro.filter((prod) =>
+        prod.Name.startsWith(this.searchValue)
+      );
       console.log(result);
 
-       EventBus.$emit('DATA_CHANGE', result);
+      EventBus.$emit("DATA_CHANGE", result);
+    },
+    doSomething() {
+      console.log(this.selected);
+      var category_result = this.selected;
+      EventBus.$emit("CATEGORY_CHANGE", category_result);
+
     },
   },
 };
