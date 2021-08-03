@@ -11,7 +11,7 @@
         <div class=mainData @mouseover="detail(index)" @mouseout="hide(index)">
           <div class="img">
             <img :src="product.Image" alt="image" />
-            <span :id="index" style="position: absolute; width:300px;background-color:#666;display:none;text-decoration:none;color:#000" @click="showDetails(product)">Details</span>
+            <span v-if="merchant" :id="index" style="position: absolute; width:300px;background-color:#666;display:none;text-decoration:none;color:#000" @click="showDetails(product)">Details</span>
           </div>
           <p class="kurtaName">{{ product.Name }} {{index}}</p>
           <p class="kurtaPrice">{{ product.Price }}</p>
@@ -21,13 +21,17 @@
 </template>
 
 <script>
+import EventBus from '../eventBus'
 import axios from "axios";
 export default {
   name: "mainContent",
   data() {
     return {
       products: [],
-      show: false
+      show: false,
+      updatedData: {},
+      roles: "",
+      merchant: true,
     };
   },
 
@@ -59,6 +63,10 @@ export default {
       console.log(product);
       window.currentProduct = product;
       this.$router.push({path: 'details', query: {product:`${product._id}`}});
+    },
+    updateData(result){
+       this.updatedData = result;
+       console.log(this.updatedData);
     }
   },
 
@@ -72,6 +80,20 @@ export default {
         console.log(JSON.stringify(res.data));
         localStorage.setItem('productInfo', JSON.stringify(res.data));
       });
+
+       this.roles = JSON.parse(localStorage.userinfo);
+      console.log("hello",this.roles.role);
+     if (this.roles.role === "merchant") {
+      this.merchant = false;
+    }
+
+      EventBus.$on('DATA_CHANGE', (result) => {
+      this.updateData(result)
+      this.products = result;
+
+     
+
+    })
   }
 
 };

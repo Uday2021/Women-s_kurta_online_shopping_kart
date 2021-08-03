@@ -1,7 +1,7 @@
 <template>
 <div>
     <Headers />
-    <div class="main">
+    <div v-if="merchant" class="main">
         <div class="image">
          <img :src="product.Image" />
          </div>
@@ -42,6 +42,7 @@ import Headers from "./Header.vue"
                 count: "",
                 stripe: null,
                 item: true,
+                merchant: true,
             }
         },
 
@@ -77,7 +78,11 @@ import Headers from "./Header.vue"
         async mounted(){
            this.stripe = await loadStripe("pk_test_51JHO6cSEbQRDxWer6f3476gB44eczFw1AkOefeSXHQdisyARKGBAI7geCeFHoBV8GZ3DpQzbKj9nqiUPdQDl5xCg00YXNMW8Si");
         
-           
+            this.roles = JSON.parse(localStorage.userinfo);
+           console.log("hello",this.roles.role);
+           if (this.roles.role === "merchant") {
+           this.merchant = false;
+          } 
         }
 
     }

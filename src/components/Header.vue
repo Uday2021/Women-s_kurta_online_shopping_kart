@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <div v-if="user" class="profile">
+      <div v-if="user && userLog" class="profile">
         <ul>
           <li>
             <a href="">
@@ -45,6 +45,7 @@
       <input
         type="text"
         id="text"
+        @keyup="filterProduct()"
         v-model="searchValue"
         placeholder="search for products, brand and more"
       />
@@ -120,6 +121,7 @@
   </div>
 </template>
 <script>
+import EventBus from '../eventBus'
 import login from "./login.vue";
 export default {
   name: "Headers",
@@ -137,7 +139,7 @@ export default {
       userLog: false,
       merchant: false,
       product: {},
-      products:[]
+      products: [],
     };
   },
   created() {
@@ -186,13 +188,14 @@ export default {
       this.$router.push({ path: "/addProduct" });
     },
     filterProduct() {
-   this.products = localStorage.productInfo;
-        console.log(this.products);
-      let pro = JSON.parse(this.products)
-const result = pro.filter((prod) =>
-   prod.Name.startsWith("Blush")
-)
-console.log(result)
+      this.products = localStorage.productInfo;
+      console.log(this.products);
+      let pro = JSON.parse(this.products);
+      const result = pro.filter((prod) => 
+      prod.Name.startsWith(this.searchValue));
+      console.log(result);
+
+       EventBus.$emit('DATA_CHANGE', result);
     },
   },
 };
